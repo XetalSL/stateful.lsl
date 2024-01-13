@@ -20,7 +20,7 @@ Structured messages can be easily defined as being passed between linked prims o
 |`MSG_STATEFUL_PARAM_TO(TYPE, NAME, OFFSET)`| Bind a message parameter to a stateful variable where `TYPE` is an LSL Data Type, `NAME` is the name of the variable and `OFFSET` is the index in the message parameter list |
 |`MSG_LOCAL_PARAM_TO(TYPE, NAME, OFFSET)`| Bind a message parameter to a local function variable where `TYPE` is an LSL Data Type, `NAME` is the name of the variable and `OFFSET` is the index in the message parameter list |
 |-|-|
-|`END_DEF`| Finishes a Definition of a Stateful or Stateful Message Parser |
+|`END_DEF`| Finishes a Definition of a Stateful Event or Stateful Message Parser |
 |-|-|
 |`PARSE_MSG(MSG_CLASS, MSG)`| Manually call a parse of a message where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message being parsed and  |
 |-|-|
