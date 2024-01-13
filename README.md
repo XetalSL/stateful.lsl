@@ -10,7 +10,7 @@ Structured messages can be easily defined as being passed between linked prims o
 |-|-|
 |`DBG_VAR(NAME)`| Simple printing of a variable when debugging your script |
 |`DEF_STATEFUL(TYPE, NAME) ... `| Begin defining a stateful event and variable where `TYPE` is an LSL Data Type and `NAME` is the name of the variable. Replace `...` with your event code. |
-|`END_DEF`| Finishes a Definition of a Stateful Event or Stateful Message Parser |
+|`END_DEF`| Finishes a Definition of a Stateful Event |
 
 ## Defining and emiting a Stateful Message
 | Declaration | Description |
@@ -28,10 +28,6 @@ Structured messages can be easily defined as being passed between linked prims o
 |`MSG_STATEFUL_PARAM_TO(TYPE, NAME, OFFSET)`| Bind a message parameter to a stateful variable where `TYPE` is an LSL Data Type, `NAME` is the name of the variable and `OFFSET` is the index in the message parameter list |
 |`MSG_LOCAL_PARAM_TO(TYPE, NAME, OFFSET)`| Bind a message parameter to a local function variable where `TYPE` is an LSL Data Type, `NAME` is the name of the variable and `OFFSET` is the index in the message parameter list |
 |`END_DEF`| Finishes a Definition of a Stateful Message Parser |
-
-| Declaration | Description |
-|-|-|
-|`END_DEF`| Finishes a Definition of a Stateful Event or Stateful Message Parser |
 
 | Declaration | Description |
 |-|-|
