@@ -4,7 +4,7 @@ stateful.lsl is a preprocessor macro library for lsl scripts that enables defini
 Structured messages can be easily defined as being passed between linked prims or region prims.
 
 ## Functions
-| Functions | Description |
+| Declaration | Description |
 |-|-|
 |`DBG_VAR(NAME)`| Simple printing of a variable when debugging your script |
 |`DEF_STATEFUL(TYPE, NAME) ... END_DEF`| Begin defining a stateful event and variable where `TYPE` is an LSL Data Type and `NAME` is the name of the variable. Replace `...` with your event code. |
@@ -24,7 +24,7 @@ Structured messages can be easily defined as being passed between linked prims o
 |-|-|
 |`PARSE_MSG(MSG_CLASS, MSG)`| Manually call a parse of a message where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message being parsed and  |
 |-|-|
-|`DEF_LISTEN`| |
-|`LISTEN_CASE(MSG_CLASS)`| |
-|`ELSE_LISTEN_CASE(MSG_CLASS)`| |
-|`END_LISTEN`| |
+|`DEF_LISTEN`| Begin defining the lsl listen event for stateful messages. The listen parameter name culture is defined as `listen( integer c, string n, key id, string m )`. Any custom code must come imediately after this declaration. |
+|`LISTEN_CASE(MSG_CLASS)`| Inject a listen case for a specific message where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message |
+|`ELSE_LISTEN_CASE(MSG_CLASS)`| Same as above but for additional cases |
+|`END_LISTEN`| Finish defining the lsl listen event. This declaration also includes a debug message in the event that a message type was not known. |
