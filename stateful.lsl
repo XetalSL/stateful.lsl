@@ -18,9 +18,6 @@ Set_##NAME(TYPE(msg[OFFSET]));\
 #define MSG_LOCAL_PARAM_TO(TYPE, NAME, OFFSET)\
 TYPE NAME = TYPE(msg[OFFSET]);\
 
-#define MSG_PARAM(TYPE, OFFSET)\
-TYPE(msg[OFFSET]);\
-
 #define END_DEF }
 
 #define PARSE_MSG(MSG_CLASS, msg) Parse_##MSG_CLASS(msg);
