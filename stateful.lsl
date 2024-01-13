@@ -20,7 +20,7 @@ TYPE NAME = TYPE(msg[OFFSET]);\
 
 #define END_DEF }
 
-#define PARSE_MSG(MSG_CLASS, msg) Parse_##MSG_CLASS(msg);
+#define PARSE_MSG(MSG_CLASS, MSG) Parse_##MSG_CLASS(MSG);
 
 #define DEF_LISTEN \
 listen( integer c, string n, key id, string m ){\
