@@ -16,14 +16,13 @@ Structured messages can be easily defined as being passed between linked prims o
 |-|-|
 |`EMIT_MSG(MSG_CLASS)`| Emit a message that contains the current variable states |
 |-|-|
-|`BEGIN_DEF_PARSE_MSG(MSG_CLASS)`| Begin defining a stateful message parser where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message being parsed |
+|`BEGIN_DEF_PARSE_MSG(MSG_CLASS)`| Begin defining a stateful message parser where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message being parsed. May also include script specific code within the message parser |
 |`MSG_STATEFUL_PARAM_TO(TYPE, NAME, OFFSET)`| Bind a message parameter to a stateful variable where `TYPE` is an LSL Data Type, `NAME` is the name of the variable and `OFFSET` is the index in the message parameter list |
 |`MSG_LOCAL_PARAM_TO(TYPE, NAME, OFFSET)`| Bind a message parameter to a local function variable where `TYPE` is an LSL Data Type, `NAME` is the name of the variable and `OFFSET` is the index in the message parameter list |
-|`MSG_PARAM(TYPE, OFFSET)`| |
 |-|-|
 |`END_DEF`| Finishes a Definition of a Stateful or Stateful Message Parser |
 |-|-|
-|`PARSE_MSG(MSG_CLASS, msg)`| |
+|`PARSE_MSG(MSG_CLASS, MSG)`| Manually call a parse of a message where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message being parsed and  |
 |-|-|
 |`DEF_LISTEN`| |
 |`LISTEN_CASE(MSG_CLASS)`| |
