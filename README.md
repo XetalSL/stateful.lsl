@@ -42,3 +42,69 @@ Structured messages can be easily defined as being passed between linked prims o
 |`LISTEN_CASE(MSG_CLASS)`| Inject a listen case for a specific message where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message |
 |`ELSE_LISTEN_CASE(MSG_CLASS)`| Same as above but for additional cases |
 |`END_LISTEN`| Finish defining the lsl listen event. This declaration also includes a debug message in the event that a message type was not known. |
+
+# Example Usage
+    #include "stateful.lsl"
+    
+    string password = "example_password_you_shouldnt_use";
+    
+    integer chnl = 1020;
+    
+    DEF_STATEFUL(integer, count)
+        llOwnerSay("Count Changed");
+    END_DEF
+    
+    DEF_STATEFUL(integer, value)END_DEF
+    DEF_STATEFUL(float, name)END_DEF
+    
+    DEF_STATEFUL_LSD_PROTECTED(vector, colour, password) 
+        llOwnerSay("Colour Changed"); 
+    END_DEF
+    
+    DEF_STATEFUL_LSD_PROTECTED(string, text, password) 
+        llOwnerSay("Text Changed to " + Get_text()); 
+    END_DEF
+    
+    #define MSG_STATE 1
+    DEF_STATEFUL_MSG(MSG_STATE)
+        STATEFUL_MSG_PARAM(count),
+        STATEFUL_MSG_PARAM(value),
+        STATEFUL_MSG_PARAM(name)
+    END_STATEFUL_MSG_TO_REGION(chnl)
+    
+    BEGIN_DEF_PARSE_MSG(MSG_STATE)
+        MSG_STATEFUL_PARAM_TO(integer,count,0)
+        MSG_STATEFUL_PARAM_TO(integer,value,1)
+        MSG_STATEFUL_PARAM_TO(float,name,2)
+    END_DEF
+    
+    #define MSG_COLOUR 2
+    DEF_STATEFUL_MSG(MSG_COLOUR)
+        STATEFUL_MSG_PARAM_LSD(colour),
+        STATEFUL_MSG_PARAM_LSD(text)
+    END_STATEFUL_MSG_TO_REGION(chnl)
+    
+    BEGIN_DEF_PARSE_MSG(MSG_COLOUR)
+        MSG_STATEFUL_PARAM_TO(vector,colour,0)
+        MSG_STATEFUL_PARAM_TO(string,text,1)
+    END_DEF
+    
+    default
+    {
+        state_entry()
+        {
+            Set_count(8);
+            Set_value(8);
+            Set_name(8);
+            Set_colour(<1,2,3>);
+            Set_text("some text");
+            
+            EMIT_MSG(MSG_STATE)
+        }
+        
+        DEF_LISTEN
+        LISTEN_CASE(MSG_STATE)
+        ELSE_LISTEN_CASE(MSG_COLOUR)
+        END_LISTEN
+    }
+
