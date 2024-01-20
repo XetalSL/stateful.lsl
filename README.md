@@ -20,7 +20,7 @@ Structured messages can be easily defined as being passed between linked prims o
 |`DEF_STATEFUL_MSG(MSG_CLASS) ...`| Begin defining a stateful message where `MSG_CLASS` is a PREPROCESSOR DEFINED integer to uniquely identify the stateful message. Replace `...` with 0 or more `STATEFUL_MSG_PARAMS`. |
 |`STATEFUL_MSG_PARAM(NAME)`| Bind a stateful variable to the stateful message. This can be repeated as many times as needed to include multiple variables separated by a comma. |
 |`STATEFUL_MSG_PARAM_LSD(NAME)`| Bind a stateful variable stored in the LinkSetData Key Value Storage to the stateful message. This can be repeated as many times as needed to include multiple variables separated by a comma. |
-|`END_STATEFUL_MSG_TO_REGION`| Finish defining a stateful message that is destined for listening prims in the region |
+|`END_STATEFUL_MSG_TO_REGION(CHANNEL)`| Finish defining a stateful message that is destined for listening prims in the region |
 |`END_STATEFUL_MSG_TO_LINK(LINK_SCOPE)`| Finish defining a stateful message that is destined for linked prims |
 |`EMIT_MSG(MSG_CLASS)`| Emit a message that contains the current variable states |
 
