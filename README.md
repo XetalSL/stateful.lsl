@@ -64,11 +64,19 @@ Structured messages can be easily defined as being passed between linked prims o
     DEF_STATEFUL_LSD_PROTECTED(string, text, password) 
         llOwnerSay("Text Changed to " + Get_text()); 
     END_DEF
+
+    #define MSG_POLL 1
+    DEF_STATEFUL_MSG(MSG_POLL)
+    END_STATEFUL_MSG_TO_REGION(chnl)
+    
+    BEGIN_DEF_PARSE_MSG(MSG_POLL)
+        llOwnerSay("Got the Poll message");
+    END_DEF
     
     #define MSG_STATE 1
     DEF_STATEFUL_MSG(MSG_STATE)
-        STATEFUL_MSG_PARAM(count),
-        STATEFUL_MSG_PARAM(value),
+        STATEFUL_MSG_PARAM(count)
+        STATEFUL_MSG_PARAM(value)
         STATEFUL_MSG_PARAM(name)
     END_STATEFUL_MSG_TO_REGION(chnl)
     
@@ -80,7 +88,7 @@ Structured messages can be easily defined as being passed between linked prims o
     
     #define MSG_COLOUR 2
     DEF_STATEFUL_MSG(MSG_COLOUR)
-        STATEFUL_MSG_PARAM_LSD(colour),
+        STATEFUL_MSG_PARAM_LSD(colour)
         STATEFUL_MSG_PARAM_LSD(text)
     END_STATEFUL_MSG_TO_REGION(chnl)
     
