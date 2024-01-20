@@ -4,9 +4,9 @@
 #define DEF_STATEFUL_LSD(TYPE, NAME) TYPE Get_##NAME(){return (TYPE)llLinksetDataRead("s_"+#NAME);} Set_##NAME(TYPE v){llLinksetDataWrite("s_"+#NAME,(string)v); Event_##NAME();} Event_##NAME() { 
 #define DEF_STATEFUL_LSD_PROTECTED(TYPE, NAME, PASSWORD) TYPE Get_##NAME(){return (TYPE)llLinksetDataReadProtected("s_"+#NAME,PASSWORD);} Set_##NAME(TYPE v){llLinksetDataWriteProtected("s_"+#NAME,(string)v,PASSWORD); Event_##NAME();} Event_##NAME() { 
 
-#define DEF_STATEFUL_MSG(MSG_CLASS) Emit_S_##MSG_CLASS() { list msg = [MSG_CLASS,
-#define STATEFUL_MSG_PARAM(NAME) s_##NAME
-#define STATEFUL_MSG_PARAM_LSD(NAME) Get_##NAME()
+#define DEF_STATEFUL_MSG(MSG_CLASS) Emit_S_##MSG_CLASS() { list msg = [MSG_CLASS
+#define STATEFUL_MSG_PARAM(NAME) ,s_##NAME
+#define STATEFUL_MSG_PARAM_LSD(NAME) ,Get_##NAME()
 #define END_STATEFUL_MSG_TO_REGION(CHANNEL) ]; llRegionSay(CHANNEL,llDumpList2String(msg,"|")); END_DEF
 #define END_STATEFUL_MSG_TO_LINK(LINK_SCOPE) ]; llMessageLinked(LINK_SCOPE,c,llDumpList2String(msg,"|")); END_DEF
 
