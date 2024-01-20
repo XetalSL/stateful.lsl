@@ -7,7 +7,7 @@
 #define DEF_STATEFUL_MSG(MSG_CLASS) Emit_S_##MSG_CLASS() { list msg = [MSG_CLASS,
 #define STATEFUL_MSG_PARAM(NAME) s_##NAME
 #define STATEFUL_MSG_PARAM_LSD(NAME) Get_##NAME()
-#define END_STATEFUL_MSG_TO_REGION ]; llRegionSay(CHANNEL,llDumpList2String(msg,"|")); END_DEF
+#define END_STATEFUL_MSG_TO_REGION(CHANNEL) ]; llRegionSay(CHANNEL,llDumpList2String(msg,"|")); END_DEF
 #define END_STATEFUL_MSG_TO_LINK(LINK_SCOPE) ]; llMessageLinked(LINK_SCOPE,c,llDumpList2String(msg,"|")); END_DEF
 
 #define EMIT_MSG(MSG_CLASS) Emit_S_##MSG_CLASS();\
