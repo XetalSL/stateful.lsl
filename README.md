@@ -128,6 +128,7 @@ default
     Define the standard lsl listen event function.
     This entirely replaces manual entry of the listen() function.
     If custom code is needed within the listen() function, place it after "DEF_LISTEN".
+    "DEF_LISTEN" generates the listen event header as "listen( integer c, string n, key id, string m )"
     */
     DEF_LISTEN
     LISTEN_CASE(MSG_STATE)
