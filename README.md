@@ -52,25 +52,31 @@ string password = "example_password_you_shouldnt_use";
 
 integer chnl = 1020;
 
+// Define a stateful integer field/variable and event that monitors the integer
 DEF_STATEFUL(integer, count)
     llOwnerSay("Count Changed");
 END_DEF
 
+// Define a stateful integer and float. These are effectively decorated fields/variables
 DEF_STATEFUL(integer, value)END_DEF
 DEF_STATEFUL(float, name)END_DEF
 
-DEF_STATEFUL_LSD_PROTECTED(vector, colour, password) 
+// Define a stateful event that monitors a LinkSetData stored vector.
+DEF_STATEFUL_LSD(vector, colour) 
     llOwnerSay("Colour Changed"); 
 END_DEF
 
+// Define a stateful event that monitors a Protected LinkSetData stored string.
 DEF_STATEFUL_LSD_PROTECTED(string, text, password) 
     llOwnerSay("Text Changed to " + Get_text()); 
 END_DEF
 
+// Defines the stateful message of class "MSG_POLL" that has no parameters.
 #define MSG_POLL 1
 DEF_STATEFUL_MSG(MSG_POLL)
 END_STATEFUL_MSG_TO_REGION(chnl)
 
+// Parse the stateful message of class "MSG_POLL"
 BEGIN_DEF_PARSE_MSG(MSG_POLL)
     llOwnerSay("Got the Poll message");
 END_DEF
@@ -82,6 +88,10 @@ DEF_STATEFUL_MSG(MSG_STATE)
     STATEFUL_MSG_PARAM(name)
 END_STATEFUL_MSG_TO_REGION(chnl)
 
+/*
+Parse the stateful message of class "MSG_STATE" that has three parameters.
+Each parameter updates the stateful field/variable defined. The number at the end indicates the index of the paramter in the raw message.
+*/
 BEGIN_DEF_PARSE_MSG(MSG_STATE)
     MSG_STATEFUL_PARAM_TO(integer,count,0)
     MSG_STATEFUL_PARAM_TO(integer,value,1)
@@ -103,15 +113,22 @@ default
 {
     state_entry()
     {
+        //Init stateful fields/variables
         Set_count(8);
         Set_value(8);
         Set_name(8);
         Set_colour(<1,2,3>);
         Set_text("some text");
-        
+
+        //Emit the state message.
         EMIT_MSG(MSG_STATE)
     }
-    
+
+    /*
+    Define the standard lsl listen event function.
+    This entirely replaces manual entry of the listen() function.
+    If custom code is needed within the listen() function, place it after "DEF_LISTEN".
+    */
     DEF_LISTEN
     LISTEN_CASE(MSG_STATE)
     ELSE_LISTEN_CASE(MSG_COLOUR)
