@@ -1,6 +1,7 @@
 #define DBG_VAR(NAME) llOwnerSay((string)NAME);
 
 #define DEF_STATEFUL(TYPE, NAME) TYPE s_##NAME; Set_##NAME(TYPE v){s_##NAME=v; Event_##NAME();} Event_##NAME() {  
+#define DEF_STATEFUL_INIT(TYPE, NAME, VALUE) TYPE s_##NAME = VALUE; Set_##NAME(TYPE v){s_##NAME=v; Event_##NAME();} Event_##NAME() {  
 #define DEF_STATEFUL_LSD(TYPE, NAME) TYPE Get_##NAME(){return (TYPE)llLinksetDataRead("s_"+#NAME);} Set_##NAME(TYPE v){llLinksetDataWrite("s_"+#NAME,(string)v); Event_##NAME();} Event_##NAME() { 
 #define DEF_STATEFUL_LSD_LIST(NAME) list Get_##NAME(){return llParseStringKeepNulls(llLinksetDataRead("s_"+#NAME),["|"],[]);} Set_##NAME(list v){llLinksetDataWrite("s_"+#NAME,llDumpList2String(v,"|")); Event_##NAME();} Event_##NAME() { 
 
@@ -42,6 +43,8 @@ TYPE NAME = TYPE(msg[OFFSET]);\
 #define DEF_LISTEN \
 listen( integer c, string n, key id, string m ){\
 list msg = llParseStringKeepNulls(m,["|"],[]);\
+
+#define DBG_LISTEN llOwnerSay("\nCHNL: " + (string)c + "\nNAME: " + (string)n + "\nID: " + (string)id + "\nMSG: " + (string)m);
 
 #define LISTEN_CASE(MSG_CLASS) if(MSG_CLASS == ((integer)msg[0])) { Parse_##MSG_CLASS(llDeleteSubList(msg,0,0)); }
 #define ELSE_LISTEN_CASE(MSG_CLASS) else if(MSG_CLASS == ((integer)msg[0])) { Parse_##MSG_CLASS(llDeleteSubList(msg,0,0)); }
